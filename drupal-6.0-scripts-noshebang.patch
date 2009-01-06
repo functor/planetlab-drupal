@@ -1,0 +1,40 @@
+diff -u scripts/code-clean.sh scripts.new/code-clean.sh
+--- scripts/code-clean.sh	2008-02-22 07:37:31.000000000 -0600
++++ scripts.new/code-clean.sh	2008-02-22 07:37:31.000000000 -0600
+@@ -1,4 +1,3 @@
+-#!/bin/sh
+ # $Id: code-clean.sh,v 1.8 2005/08/11 13:02:08 dries Exp $
+ 
+ find . -name "*~" -type f | xargs rm -f
+diff -u scripts/code-style.pl scripts.new/code-style.pl
+--- scripts/code-style.pl	2008-02-22 07:37:57.000000000 -0600
++++ scripts.new/code-style.pl	2008-02-22 07:37:57.000000000 -0600
+@@ -1,4 +1,3 @@
+-#!/usr/bin/perl -w
+ # $Id: code-style.pl,v 1.14 2007/02/15 11:40:19 dries Exp $
+ 
+ use Pod::Usage;
+diff -u scripts/cron-curl.sh scripts.new/cron-curl.sh
+--- scripts/cron-curl.sh	2008-02-22 07:38:04.000000000 -0600
++++ scripts.new/cron-curl.sh	2008-02-22 07:38:04.000000000 -0600
+@@ -1,4 +1,3 @@
+-#!/bin/sh
+ # $Id: cron-curl.sh,v 1.3 2006/08/22 07:38:24 dries Exp $
+ 
+ curl --silent --compressed http://example.com/cron.php
+diff -u scripts/cron-lynx.sh scripts.new/cron-lynx.sh
+--- scripts/cron-lynx.sh	2008-02-22 07:38:09.000000000 -0600
++++ scripts.new/cron-lynx.sh	2008-02-22 07:38:09.000000000 -0600
+@@ -1,4 +1,3 @@
+-#!/bin/sh
+ # $Id: cron-lynx.sh,v 1.3 2006/08/22 07:38:24 dries Exp $
+ 
+ /usr/bin/lynx -source http://example.com/cron.php > /dev/null 2>&1
+diff -u scripts/drupal.sh scripts.new/drupal.sh
+--- scripts/drupal.sh	2008-02-22 07:38:17.000000000 -0600
++++ scripts.new/drupal.sh	2008-02-22 07:38:17.000000000 -0600
+@@ -1,4 +1,3 @@
+-#!/usr/bin/php
+ <?php
+ // $Id: drupal.sh,v 1.4 2007/07/02 14:41:37 dries Exp $
+ 

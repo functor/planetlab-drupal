@@ -1,0 +1,41 @@
+Initially upon install, Drupal requires two additional installation steps:
+
+1. DB setup
+
+To begin with, install php-mysql or php-pgsql, depending on which db backend
+you intend to use.
+
+Then, follow the installation instructions in INSTALL.*.txt to complete the 
+setup of and connection of Drupal to the required database, including chmod 
+666 on /etc/drupal/default/settings.php, uncommenting the appropriate line in 
+/etc/httpd/conf.d/drupal.conf, and restarting httpd.
+
+Once these steps have been completed, you should be ready to connect to http://yourhost/drupal
+to complete the initial setup.
+
+Remember to change the /etc/drupal/default/settings.php permissions back to 
+644 when you've finished the initial setup.
+
+2. Enable remote access
+
+Drupal ships in Fedora with all non-localhost access disabled.  Comment and
+uncomment lines in /etc/httpd/conf.d/drupal.conf as appropriate, and restart
+httpd.
+
+Regarding the file layout:
+Pay careful attention to the placement of the directories as established by
+the package.  If you need to relocate files due to size, for custom modules
+not included in Fedora, or for large custom site data, be careful to do so
+without altering any of the symlinks owned by the package.  Most configurations
+should not run into problems, but if any symlinks are changed, they will be
+re-written when the package is upgraded, which could break the site until
+you re-change the symlink.
+
+3. SSL/TLS usage.
+CVE-2008-3661 relates to the security of session cookies and SSL/TLS.
+
+http://int21.de/cve/CVE-2008-3661-drupal.html
+http://www.securityfocus.com/bid/31285
+
+To help mitigate this, uncomment the following line in /etc/httpd/conf.d/drupal.conf:
+#php_flag session.cookie_secure on
