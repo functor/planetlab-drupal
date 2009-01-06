@@ -3,7 +3,7 @@
 #
 
 %define name drupal
-%define version 6.7
+%define version 6.8
 %define taglevel 0
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
