@@ -1,5 +1,5 @@
 #
-# $Id: drupal.spec 1206 2008-03-03 15:49:07Z thierry $
+# $Id$
 #
 
 %define name drupal

@@ -1,4 +1,4 @@
-# $Id: Makefile 10670 2008-09-26 13:43:51Z thierry $
+# $Id$
 CURL	:= curl -H Pragma: -O -R -S --fail --show-error
 SHA1SUM	= sha1sum
 
