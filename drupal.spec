@@ -62,8 +62,9 @@ mkdir -p %{buildroot}%{_docdir}
 cp -pr %SOURCE2 .
 cp -pr %SOURCE4 .
 install -D -p -m 0644 %SOURCE3 %{buildroot}%{_sysconfdir}/cron.hourly/drupal 
-mkdir -p %{buildroot}%{_localstatedir}/lib/drupal
-ln -s ../../..%{_localstatedir}/lib/drupal %{buildroot}%{drupaldir}/files
+#mkdir -p %{buildroot}%{_localstatedir}/lib/drupal
+#ln -s ../../..%{_localstatedir}/lib/drupal %{buildroot}%{drupaldir}/files
+mkdir %{buildroot}%{drupaldir}/files
 
 %clean
 rm -rf %{buildroot}
@@ -88,7 +89,8 @@ rm -rf %{buildroot}
 %config(noreplace) %{drupaldir}/sites/default
 #%config(noreplace) %{_sysconfdir}/httpd/conf.d/drupal.conf
 %attr(755,root,apache) %{_sysconfdir}/cron.hourly/drupal
-%dir %attr(775,root,apache) %{_localstatedir}/lib/drupal/
+#%dir %attr(775,root,apache) %{_localstatedir}/lib/drupal/
+%dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
 * Thu Dec 11 2008 Jon Ciesla <limb@jcomserv.net> - 6.7-1
