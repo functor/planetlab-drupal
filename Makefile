@@ -5,10 +5,10 @@ SHA1SUM	= sha1sum
 # default - overridden by the build
 SPECFILE = drupal.spec
 
-version=6.8
+version=4.7.11
 
 main.URL	:= http://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
-main.SHA1SUM    := d736ef18f1c2fd06217e31f6af3ea3745299f7fd
+main.SHA1SUM    := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
 
 main.FILE	:= $(notdir $(main.URL))
 
