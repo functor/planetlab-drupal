@@ -67,3 +67,5 @@ rm -rf %{buildroot}
 %dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
+* Fri Jan 09 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> -
+- plain drupal 4.7.11 
