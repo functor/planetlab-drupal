@@ -23,6 +23,7 @@ URL: http://www.drupal.org
 Source0: http://ftp.osuosl.org/pub/drupal/files/projects/%{name}-%{version}.%{taglevel}.tar.gz
 #Source1: drupal.conf
 Source2: drupal-cron
+Source3: http://ftp.drupal.org/files/projects/taxonomy_block-4.7.x-1.x-dev.tar.gz
 
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,10 +36,10 @@ personal weblogs to large community-driven websites.  Drupal is highly
 configurable, skinnable, and secure.
 
 %prep
-
-%setup -q -n %{name}-%{version}.%{taglevel}
+%setup -q -n %{name}-%{version}.%{taglevel} -a 3
 
 %build
+mv taxonomy_block modules
 
 %install
 rm -rf %{buildroot}
