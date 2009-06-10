@@ -4,7 +4,7 @@
 
 %define name drupal
 %define version 4.7
-%define taglevel 11
+%define taglevel 12
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -68,5 +68,8 @@ rm -rf %{buildroot}
 %dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
+* Wed Jun 10 2009 Stephen Soltesz <soltesz@cs.princeton.edu> - drupal-4.7-12
+- add taxonomy_block to default install
+
 * Fri Jan 09 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> -
 - plain drupal 4.7.11 
