@@ -4,7 +4,7 @@
 
 %define name drupal
 %define version 4.7
-%define taglevel 12
+%define taglevel 13
 %define minorversion 11
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 %dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
+* Thu Jun 11 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - drupal-4.7-13
+- fix build; drupal version not linked to this tagleve;l
+
 * Wed Jun 10 2009 Stephen Soltesz <soltesz@cs.princeton.edu> - drupal-4.7-12
 - add taxonomy_block to default install
 
