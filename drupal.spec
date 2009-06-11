@@ -5,6 +5,7 @@
 %define name drupal
 %define version 4.7
 %define taglevel 12
+%define minorversion 11
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -20,7 +21,7 @@ Summary: An open-source content-management platform
 Group: Applications/Publishing
 License: GPLv2+        
 URL: http://www.drupal.org
-Source0: http://ftp.osuosl.org/pub/drupal/files/projects/%{name}-%{version}.%{taglevel}.tar.gz
+Source0: http://ftp.osuosl.org/pub/drupal/files/projects/%{name}-%{version}.%{minorversion}.tar.gz
 #Source1: drupal.conf
 Source2: drupal-cron
 Source3: http://ftp.drupal.org/files/projects/taxonomy_block-4.7.x-1.x-dev.tar.gz
@@ -36,7 +37,7 @@ personal weblogs to large community-driven websites.  Drupal is highly
 configurable, skinnable, and secure.
 
 %prep
-%setup -q -n %{name}-%{version}.%{taglevel} -a 3
+%setup -q -n %{name}-%{version}.%{minorversion} -a 3
 
 %build
 mv taxonomy_block modules
