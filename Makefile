@@ -11,7 +11,7 @@ main.URL	:= http://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
 main.SHA1SUM    := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
 main.FILE	:= $(notdir $(main.URL))
 
-taxo.URL	:= http://ftp.drupal.org/files/projects/taxonomy_block-4.7.x-1.x-dev.tar.gz
+taxo.URL	:= http://build.planet-lab.org/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
 taxo.MD5SUM := a4ec6ea6f00cf400581a6be4baaf1fb6
 taxo.FILE	:= $(notdir $(taxo.URL))
 
