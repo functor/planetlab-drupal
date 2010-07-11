@@ -4,7 +4,7 @@
 
 %define name drupal
 %define version 4.7
-%define taglevel 13
+%define taglevel 14
 %define minorversion 11
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 %dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
+* Sun Jul 11 2010 S.Çağlar Onur <caglar@cs.princeton.edu> - drupal-4.7-14
+- Use local URL
+
 * Thu Jun 11 2009 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - drupal-4.7-13
 - fix build; drupal version not linked to this tagleve;l
 
