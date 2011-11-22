@@ -1,49 +1,52 @@
-# $Id$
-CURL	:= curl -H Pragma: -O -R -S --fail --show-error
-SHA1SUM	= sha1sum
-
-# default - overridden by the build
-SPECFILE = drupal.spec
+#
+WEBFETCH := curl -H Pragma: -O -R -S --fail --show-error
+SHA1SUM	 := sha1sum
 
 version=4.7.11
 
-main.URL	:= http://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
-main.SHA1SUM    := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
-main.FILE	:= $(notdir $(main.URL))
+ALL		+= drupal
+drupal-URL1	:= http://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
+drupal-URL2	:= http://mirror.onelab.eu/third-party/drupal-$(version).tar.gz
+drupal-SHA1SUM  := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
+drupal		:= $(notdir $(drupal-URL1))
 
-taxo.URL	:= http://build.planet-lab.org/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
-taxo.MD5SUM := a4ec6ea6f00cf400581a6be4baaf1fb6
-taxo.FILE	:= $(notdir $(taxo.URL))
+ALL		+= taxo
+taxo-URL1	:= http://build.planet-lab.org/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
+taxo-URL2	:= http://mirror.onelab.eu/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
+taxo-SHA1SUM	:= 9d926df1695c0092a74446154b00579d4ccbcb60
+taxo		:= $(notdir $(taxo-URL1))
 
-# Thierry - when called from within the build, PWD is /build
-SOURCEFILES := $(main.FILE) $(taxo.FILE)
+all: $(ALL)
+.PHONY: all
 
-$(main.FILE): #FORCE
-	@if [ ! -e "$@" ] ; then echo "$(CURL) $(main.URL)" ; $(CURL) $(main.URL) ; fi
-	@if [ ! -e "$@" ] ; then echo "Could not download source file: $@ does not exist" ; exit 1 ; fi
-	@if test "$$(sha1sum $@ | awk '{print $$1}')" != "$(main.SHA1SUM)" ; then \
-	    echo "sha1sum of the downloaded $@ does not match the one from 'sources' file" ; \
-	    echo "Local copy: $$(sha1sum $@)" ; \
-	    echo "In sources: $(main.SHA1SUM)" ; \
-	    exit 1 ; \
+##############################
+define download_target
+$(1): $($(1))
+.PHONY: $(1)
+$($(1)): 
+	@if [ ! -e "$($(1))" ] ; then \
+	{ echo Using primary; echo "$(WEBFETCH) $($(1)-URL1)" ; $(WEBFETCH) $($(1)-URL1) ; } || \
+	{ echo Using secondary; echo "$(WEBFETCH) $($(1)-URL2)" ; $(WEBFETCH) $($(1)-URL2) ; } ; fi
+	@if [ ! -e "$($(1))" ] ; then echo "Could not download source file: $($(1)) does not exist" ; exit 1 ; fi
+	@if test "$$$$($(SHA1SUM) $($(1)) | awk '{print $$$$1}')" != "$($(1)-SHA1SUM)" ; then \
+	    echo "sha1sum of the downloaded $($(1)) does not match the one from 'Makefile'" ; \
+	    echo "Local copy: $$$$($(SHA1SUM) $($(1)))" ; \
+	    echo "In Makefile: $($(1)-SHA1SUM)" ; \
+	    false ; \
 	else \
-	    ls -l $@ ; \
+	    ls -l $($(1)) ; \
 	fi
+endef
 
-$(taxo.FILE): #FORCE
-	@if [ ! -e "$@" ] ; then echo "$(CURL) $(taxo.URL)" ; $(CURL) $(taxo.URL) ; ln $@ taxonomy_block.tar.gz; fi
-	@if [ ! -e "$@" ] ; then echo "Could not download source file: $@ does not exist" ; exit 1 ; fi
-	@if test "$$(md5sum $@ | awk '{print $$1}')" != "$(taxo.MD5SUM)" ; then \
-	    echo "md5sum of the downloaded $@ does not match the one from 'sources' file" ; \
-	    echo "Local copy: $$(md5sum $@)" ; \
-	    echo "In sources: $(taxo.MD5SUM)" ; \
-	    exit 1 ; \
-	else \
-	    ls -l $@ ; \
-	fi
+$(eval $(call download_target,drupal))
+$(eval $(call download_target,taxo))
 
-sources: $(SOURCEFILES)
+sources: $(ALL) 
 .PHONY: sources
+
+####################
+# default - overridden by the build
+SPECFILE = drupal.spec
 
 PWD=$(shell pwd)
 PREPARCH ?= noarch
