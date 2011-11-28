@@ -4,7 +4,7 @@
 
 %define name drupal
 %define version 4.7
-%define taglevel 14
+%define taglevel 15
 %define minorversion 11
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 %dir %attr(775,root,apache) %{drupaldir}/files
 
 %changelog
+* Mon Nov 28 2011 Thierry Parmentelat <thierry.parmentelat@sophia.inria.fr> - drupal-4.7-15
+- dual mirror build
+
 * Sun Jul 11 2010 S.Çağlar Onur <caglar@cs.princeton.edu> - drupal-4.7-14
 - Use local URL
 
