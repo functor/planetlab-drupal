@@ -5,7 +5,7 @@ SHA1SUM	 := sha1sum
 version=4.7.11
 
 ALL		+= drupal
-drupal-URL1	:= http://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
+drupal-URL1	:= https://ftp.drupal.org/files/projects/drupal-$(version).tar.gz
 drupal-URL2	:= http://mirror.onelab.eu/third-party/drupal-$(version).tar.gz
 drupal-SHA1SUM  := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
 drupal		:= $(notdir $(drupal-URL1))
