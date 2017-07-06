@@ -11,6 +11,7 @@ drupal-SHA1SUM  := c9f767e6c2cd873c4b0bef1986e2821febfc7e34
 drupal		:= $(notdir $(drupal-URL1))
 
 ALL		+= taxo
+taxo-URL1	:= https://raw.githubusercontent.com/functor/planetlab-third-party/master/taxonomy_block-4.7.x-1.x-dev.tar.gz
 taxo-URL1	:= http://build.planet-lab.org/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
 taxo-URL2	:= http://mirror.onelab.eu/third-party/taxonomy_block-4.7.x-1.x-dev.tar.gz
 taxo-SHA1SUM	:= 9d926df1695c0092a74446154b00579d4ccbcb60
